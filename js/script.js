@@ -7,17 +7,33 @@
 const kmUser = parseInt(prompt("Inserisci i km che vuoi calcolare")) ;
 const ageUser = parseInt(prompt("Inserisci la tua età"));
 
+// Variabili per calcolo percentuale
 let result = kmUser * 0.21
-let scontoMinori = ((result / 100) * 20)
-let scontoOver = ((result / 100) * 40)
-
+let discountUnderage = ((result / 100) * 20)
+let discountOver = ((result / 100) * 40)
+let calcUnderage =  result - discountUnderage
+let calcOver =  result - discountOver
 
 // Calcolo del prezzo secondo l'età
+
+// Minorenni
 if (ageUser < 19) {
-    console.log((result - scontoMinori) + " €");
-} else if (ageUser > 64){
-    console.log((result - scontoOver) + " €");
-} else {
-    console.log((result) + " €");
+    console.log(`${calcUnderage.toFixed(2)}${" €"}`);
+    document.getElementById("price-user").innerHTML = (`${calcUnderage.toFixed(2)}${" €"}`);
+} 
+
+// Over
+
+else if (ageUser > 64){
+    console.log(`${calcOver.toFixed(2)}${" €"}`);
+    document.getElementById("price-user").innerHTML = (`${calcOver.toFixed(2)}${" €"}`);
+
+} 
+
+// Senza sconti
+
+else {
+    console.log(`${result.toFixed(2)}${" €"}`);
+    document.getElementById("price-user").innerHTML = (`${result.toFixed(2)}${" €"}`);
 }
 
